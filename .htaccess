@@ -1,0 +1,10 @@
+
+# Block access to secured Drupal URLs if accessed using live production URL
+RewriteCond %{HTTP_HOST} ^example\.com$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www\.example\.com$ [NC]
+RewriteRule ^(scripts|profile|includes|cron\.php|install\.php|update\.php|xmlrpc\.php|filter($|/)|admin($|/)|user($|/)|node/(.*)/edit($|/)|node/(.*)/delete($|/)|node/add($|/)) - [F,L]
+
+# Block access to secured URLs with language code if accessed using live production URL
+RewriteCond %{HTTP_HOST} ^example\.com$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www\.example\.com$ [NC]
+RewriteRule ^(en\/|fr\/|zh\-hans\/)(scripts|profile|includes|cron\.php|install\.php|update\.php|xmlrpc\.php|filter($|/)|admin($|/)|user($|/)|node/(.*)/edit($|/)|node/(.*)/delete($|/)|node/add($|/)) - [F,L]
